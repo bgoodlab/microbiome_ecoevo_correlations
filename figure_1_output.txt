@@ -1,0 +1,2 @@
+Full dataset = 18 replacements, 98 modifications, 937 timepoint pairs, 45 species, 136 hosts
+Dereplicated dataset = 16 replacements, 78 modifications, 799 timepoint pairs, 45 species, 134 hosts

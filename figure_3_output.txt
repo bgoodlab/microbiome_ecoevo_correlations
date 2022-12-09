@@ -1,0 +1,10 @@
+43 positive fold changes in 73 modification events (0.589041, p-value=0.0503218)
+modification focal species percent explained mean pvalue = 0.751525
+replacement focal species percent explained mean pvalue = 0.0241976
+modification focal family percent explained mean pvalue = 0.0660934
+replacement focal family percent explained mean pvalue = 0.808519
+Modification other fraction positive P-value = 0.0182982
+Modification delta_f KS P-value = 0.0240976
+Replacement delta_f KS P-value = 0.480352
+Modification abs(delta_f) KS P-value = 0.111089
+Replacement abs(delta_f) KS P-value = 0.0261974

@@ -1,0 +1,24 @@
+Sample sizes: total=194, none=123, modification=58, replacement=13, fake_between=977
+Host 1 example: ('hmp', '160603188', '700034926', '700112755'), classification=Rep
+Host 2 example: ('hmp', '706846339', '700106170', '700163772'), classification=Mod
+Host 3 example: ('hmp', '884419868', '700113975', '700163811'), classification=None
+Modification JSD KS P-value = 0.00329967, Observed JS*=0.301337, Observed fraction above = 0.793103, null fraction above = 0.601626 
+Replacement JSD KS P-value = 0.00079992, Observed JS*=0.468876, Observed fraction above = 0.615385, Null fraction above = 0.219512 
+Modification num_extinction KS P-value = 0.00339966
+Replacement num_extinction KS P-value = 0.0089991
+Modification num_invasion KS P-value = 0.191081
+Replacement num_invasion KS P-value = 0.0805919
+Null invasion / replacement symmetry P-value = 0.00689931 (35, 18)
+Coarse versions of JSD comparisons:
+Genus Modification JSD KS P-value = 0.0139986
+Genus Replacement JSD KS P-value = 0.010499
+Family Modification JSD KS P-value = 0.0160984
+Family Replacement JSD KS P-value = 0.00139986
+Phylum Modification JSD KS P-value = 0.00879912
+Phylum Replacement JSD KS P-value = 0.00049995
+Modification alpha0 KS P-value = 0.00669933
+Replacement alpha0 KS P-value = 0.428857
+Modification dalpha KS P-value = 0.434157
+Replacement dalpha KS P-value = 0.80432
+Modification |dalpha| KS P-value = 0.125687
+Replacement |dalpha| KS P-value = 0.0411959
