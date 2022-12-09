@@ -1,0 +1,1 @@
+Analysis and figure generation code for the manuscript, B.H. Good, L.B. Rosenfeld. Eco-evolutionary feedbacks in the human gut microbiota. biorXiv 2022.01.26.477953.
