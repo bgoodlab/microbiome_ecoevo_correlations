@@ -66,7 +66,7 @@ within_host_changes = parse_data.parse_within_host_changes()
 abundance_matrix,speciess,samples = parse_data.parse_abundances()
 sys.stderr.write("Done!\n")
 
-for record_idx in xrange(0,len(within_host_changes)):
+for record_idx in range(0,len(within_host_changes)):
     
     cohort,subject,t0,t1,species,Lsnp,ksnp,Lprivate,kprivate = within_host_changes[record_idx]
 

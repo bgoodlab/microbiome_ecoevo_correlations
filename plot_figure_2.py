@@ -649,7 +649,7 @@ invasion_axis.set_xticklabels(['0','1','2','3','4'])
 invasion_axis.set_ylim([0,1])
 invasion_axis.set_yticklabels([])
 
-extinction_fig.savefig('supplemental_extinction_invasion.pdf',bbox_inches='tight')
+extinction_fig.savefig('figures/supplemental_extinction_invasion.pdf',bbox_inches='tight')
 
 ##### 
 #
@@ -685,7 +685,7 @@ replacement_survival_axis.set_ylim([0,1])
 replacement_survival_axis.set_xlim([0,1])
 replacement_survival_axis.set_yticklabels([])
 
-survival_fig.savefig('supplemental_ks.pdf',bbox_inches='tight')
+survival_fig.savefig('figures/supplemental_ks.pdf',bbox_inches='tight')
 
 ##### 
 #
@@ -742,7 +742,7 @@ for coarse_idx, coarse_type, coarse_jsds in zip(numpy.arange(0,3), ['Genus','Fam
         coarse_axis.set_xticks([-1,0,1])
         coarse_axis.set_xticklabels(['None','Mod','Rep'],rotation=90) 
 
-coarse_fig.savefig('supplemental_coarse_jsd.pdf',bbox_inches='tight')
+coarse_fig.savefig('figures/supplemental_coarse_jsd.pdf',bbox_inches='tight')
 ##### 
 #
 # Distributions of shannon entropies
@@ -890,7 +890,7 @@ dalpha_axis.set_xticklabels(['None','Mod','Rep','Btwn'],rotation=90)
 absdalpha_axis.set_xticks([-1,0,1,2])
 absdalpha_axis.set_xticklabels(['None','Mod','Rep','Btwn'],rotation=90) 
 
-dalpha_fig.savefig('supplemental_dalpha.pdf',bbox_inches='tight')
+dalpha_fig.savefig('figures/supplemental_dalpha.pdf',bbox_inches='tight')
 
 ##### 
 #
@@ -1004,7 +1004,7 @@ bias_axis.set_ylabel('% positive')
 bias_axis.set_ylim([35,70])
 bias_axis.set_xlim([1,2e02])
 bias_axis.set_xticklabels([])
-main_fig.savefig('figure_2.pdf',bbox_inches='tight')
+main_fig.savefig('figures/figure_2.pdf',bbox_inches='tight')
 
 sys.stderr.write("Done!\n")
 

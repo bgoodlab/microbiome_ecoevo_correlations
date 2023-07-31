@@ -52,4 +52,4 @@ def get_colors(colormap_idx,num):
     return colors
     
 if __name__=='__main__':
-    print colorbrewer[u'Blues']['4']
+    print(colorbrewer[u'Blues']['4'])
