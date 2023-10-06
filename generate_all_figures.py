@@ -1,5 +1,6 @@
 import os
 import sys
+import config
 
 os.system("mkdir -p figures")
 os.system("mkdir -p supplemental_data")
