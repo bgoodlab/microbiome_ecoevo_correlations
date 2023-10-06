@@ -1,3 +1,5 @@
+default_metadata_filename = "metadata.txt"
+default_coverage_filename = "species_coverage.txt"
 
 default_within_host_consecutive_filename = "within_host_changes_consecutive.txt"
 default_within_host_all_pairs_filename = "within_host_changes_all_pairs.txt"

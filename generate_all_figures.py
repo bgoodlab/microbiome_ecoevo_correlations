@@ -24,7 +24,10 @@ sys.stderr.write("Plotting supplemental private marker fig...\n")
 os.system("python plot_supplemental_private_marker.py")
 sys.stderr.write("Done!\n")
 
-sys.stderr.write("Making Supplemental Tables...\n")
-os.system("cp HMP1-2_ids_order.txt supplemental_data/TableS1.txt")
-os.system("cp within_host_changes_consecutive.txt supplemental_data/TableS2.txt")
+sys.stderr.write("Making Supplementary Data Files...\n")
+os.system("cp %s supplemental_data/Supplementary_Data_1.txt" % config.default_metadata_filename)
+os.system("cp %s supplemental_data/Supplementary_Data_2.txt" % config.default_within_host_filename)
+os.system("gzcat within_host_changes_all_genes.txt.gz > supplemental_data/Supplementary_Data_3.txt")
+os.system("cp %s supplemental_data/Supplementary_Data_4.txt" % config.default_coverage_filename)
+
 sys.stderr.write("Done!\n")

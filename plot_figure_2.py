@@ -12,7 +12,7 @@ import sys
 import colorbrewer
 import operator
 
-output_file = open("figure_2_output.txt","w")
+output_file = open("figures/figure_2_output.txt","w")
 import bacterial_phylogeny_utils
 
 genus_family_map = bacterial_phylogeny_utils.get_genus_family_map()
@@ -99,7 +99,7 @@ sys.stderr.write("Performing preliminary calculations...\t")
 within_host_events = analysis.calculate_within_host_events(within_host_changes)
     
 host_classification_map = analysis.calculate_host_classifications(within_host_events)
-host_records = host_classification_map.keys()
+host_records = list(host_classification_map.keys())
 host_event_map = analysis.collate_within_host_events(within_host_events)
 host_event_by_species_map = analysis.collate_within_host_events_by_species(within_host_events)
 host_ecological_map = analysis.calculate_host_ecological_changes(host_records,abundance_matrix,speciess,samples)
@@ -150,7 +150,7 @@ between_delta_effs= []
 num_between_comparisons = 1000
 
 sys.stderr.write("Collating calculations...\t")
-for host_idx in xrange(0,len(host_records)):
+for host_idx in range(0,len(host_records)):
     
     host_record = host_records[host_idx]
     
@@ -230,7 +230,7 @@ sys.stderr.write("Calculating between-host distribution...\t")
 # First construct fake host timepoint pairs
 fake_host_classification_map = {}
 shuffled_host_records = [host_record for host_record in host_records]
-for i in xrange(0,num_between_comparisons):
+for i in range(0,num_between_comparisons):
     
     shuffle(shuffled_host_records)
     while shuffled_host_records[0][1]==shuffled_host_records[1][1]:
@@ -281,8 +281,8 @@ observed_replacement_js_ks, observed_replacement_jsstar = analysis.ks_2samp_grea
 # Comparing Profile JS distance distributions
 modification_profile_js_kss = numpy.zeros_like(profile_jsdss[0,0])
 replacement_profile_js_kss = numpy.zeros_like(profile_jsdss[0,0])
-for i in xrange(0,profile_jsdss[0].shape[1]):
-    for j in xrange(0,profile_jsdss[0].shape[2]):
+for i in range(0,profile_jsdss[0].shape[1]):
+    for j in range(0,profile_jsdss[0].shape[2]):
         ks, jsstar = analysis.ks_2samp_greater(profile_jsdss[modification_idxs,0,i,j], profile_jsdss[null_idxs,0, i,j])
         modification_profile_js_kss[i,j] = ks
         
@@ -369,7 +369,7 @@ legend_axis.set_yticks([])
 
 # Build a joint abundance matrix for the samples we're looking at
 fs = []
-for example_idx in xrange(0,len(example_host_records)):
+for example_idx in range(0,len(example_host_records)):
     
     host_record = example_host_records[example_idx]
 
@@ -386,7 +386,7 @@ species_abundances_by_family = {}
 family_abundance_map = {}
 
 
-for species_idx in xrange(0,len(speciess)):
+for species_idx in range(0,len(speciess)):
 
     species = speciess[species_idx]
     family = bacterial_phylogeny_utils.get_family_name(species, genus_family_map=genus_family_map)
@@ -415,12 +415,12 @@ sorted_family_items = list(sorted(family_items, key=operator.itemgetter(1),rever
 sorted_species_idxs_by_family = {}
 species_color_map = {}
 
-for family_idx in xrange(0,len(sorted_family_items)):
+for family_idx in range(0,len(sorted_family_items)):
     family = sorted_family_items[family_idx][0]
     
     colors = colorbrewer.get_colors(family_idx,len(species_abundances_by_family[family])+1)
     
-    species_items = [(species_idx, species_abundances_by_family[family][species_idx][1].sum()+species_abundances_by_family[family][species_idx][2].sum()) for species_idx in xrange(0,len(species_abundances_by_family[family]))]
+    species_items = [(species_idx, species_abundances_by_family[family][species_idx][1].sum()+species_abundances_by_family[family][species_idx][2].sum()) for species_idx in range(0,len(species_abundances_by_family[family]))]
     
     sorted_species_items = list(sorted(species_items, key=operator.itemgetter(1),reverse=True))
     
@@ -445,7 +445,7 @@ handles, labels = legend_axis.get_legend_handles_labels()
 legend_axis.legend(handles[::-1], labels[::-1],loc=(-0.08,-0.05),frameon=False,fontsize=6,numpoints=1,ncol=1,handlelength=1,handletextpad=0.1)   
 
         
-for example_idx in xrange(0,len(example_host_records)):
+for example_idx in range(0,len(example_host_records)):
 
     #print "Example", example_idx+1
     host_record = example_host_records[example_idx]
@@ -459,7 +459,7 @@ for example_idx in xrange(0,len(example_host_records)):
     xs = numpy.array([0,1,2,3])
     lowers = numpy.zeros_like(xs)*1.0
     uppers = numpy.array(lowers,copy=True)
-    for family_idx in xrange(0,len(sorted_family_items)):
+    for family_idx in range(0,len(sorted_family_items)):
         
         family = sorted_family_items[family_idx][0]
     
@@ -488,7 +488,7 @@ for example_idx in xrange(0,len(example_host_records)):
                 
                 if event>0:
                 
-                    print species_name, event, uppers[0]-lowers[0],uppers[-1]-lowers[-1]
+                    print(species_name, event, uppers[0]-lowers[0],uppers[-1]-lowers[-1])
                     
                     if event==2:
                         event_color=replacement_color
@@ -535,7 +535,6 @@ for ys,colorVal,X,width,light_colorVal in zip([jsds[modification_idxs],jsds[null
 
     kernel = gaussian_kde(ys)
 
-    
     theory_ys = numpy.linspace(ys.min(),ys.max(),100)
     theory_pdf = kernel(theory_ys)
     
@@ -769,7 +768,7 @@ for ys,colorVal,X,width,light_colorVal,type in zip([alpha0s[modification_idxs],a
     num_targets = ((ys>=q25)*(ys<=q75)).sum()
     num_nulls = ((alpha0s[null_idxs]>=q25)*(alpha0s[null_idxs]<=q75)).sum()
     
-    print type, "Median rate =", num_targets*1.0/(num_targets+num_nulls), "All rate = ", len(ys)*1.0/(len(ys)+null_idxs.sum()), num_targets, len(ys), num_nulls, null_idxs.sum()
+    print(type, "Median rate =", num_targets*1.0/(num_targets+num_nulls), "All rate = ", len(ys)*1.0/(len(ys)+null_idxs.sum()), num_targets, len(ys), num_nulls, null_idxs.sum())
     
     pylab.fill_betweenx(theory_ys, X-theory_pdf*scale,X+theory_pdf*scale,linewidth=0.25,facecolor=light_colorVal,edgecolor=colorVal)
     
@@ -904,7 +903,7 @@ for ys,xs,colorVal,X,width,light_colorVal,zorder,label in zip([jsds[modification
 
     slope, intercept, rvalue, pvalue, stderr = linregress(xs,ys)
     
-    print label, slope, pvalue
+    print(label, slope, pvalue)
     
     theory_xs = numpy.linspace(xs.min(),xs.max(),10)
     
@@ -978,7 +977,7 @@ for desired_idxs,color in zip([null_idxs,modification_idxs,replacement_idxs],[nu
     positive_fractions = numpy.mean((positive_fractions/(fractions[:,0])[:,None]),axis=0)
     negative_fractions = numpy.mean((negative_fractions/(fractions[:,0])[:,None]),axis=0)
     
-    print positive_fractions/total_fractions
+    print(positive_fractions/total_fractions)
     
     xs = numpy.power(10,delta_mins)
     explained_axis.semilogx(xs,100*total_fractions,'-',color=color)
@@ -1069,9 +1068,9 @@ bootstrapped_replacement_family_js_kss = []
 bootstrapped_modification_phylum_js_kss = []
 bootstrapped_replacement_phylum_js_kss = []
 
-for idx in xrange(0,num_bootstraps):
+for idx in range(0,num_bootstraps):
     if idx%100==0:
-        print idx
+        print(idx)
         
     bootstrapped_host_classification_map = analysis.calculate_host_classifications(bootstrapped_within_host_eventss[idx])
     
@@ -1079,7 +1078,7 @@ for idx in xrange(0,num_bootstraps):
     bootstrapped_modification_idxs = []
     bootstrapped_replacement_idxs = []
     
-    for host_idx in xrange(0,len(host_records)):
+    for host_idx in range(0,len(host_records)):
     
         host_record = host_records[host_idx]
     
@@ -1112,8 +1111,8 @@ for idx in xrange(0,num_bootstraps):
     # Comparing Profile JS distance distributions
     bootstrapped_modification_profile_js_kss = numpy.zeros_like(profile_jsdss[0,0])
     bootstrapped_replacement_profile_js_kss = numpy.zeros_like(profile_jsdss[0,0])
-    for i in xrange(0,profile_jsdss[0].shape[1]):
-        for j in xrange(0,profile_jsdss[0].shape[2]):
+    for i in range(0,profile_jsdss[0].shape[1]):
+        for j in range(0,profile_jsdss[0].shape[2]):
             ks, jsstar = analysis.ks_2samp_greater(profile_jsdss[bootstrapped_modification_idxs,0,i,j], profile_jsdss[bootstrapped_null_idxs, 0, i,j])
             bootstrapped_modification_profile_js_kss[i,j] = ks
         
@@ -1186,7 +1185,7 @@ for idx in xrange(0,num_bootstraps):
     bootstrapped_modification_phylum_js_kss.append(bootstrapped_modification_js_ks)
     bootstrapped_replacement_phylum_js_kss.append(bootstrapped_replacement_js_ks)
     
-print "Done!"
+print("Done!")
 
 bootstrapped_modification_js_kss = numpy.array(bootstrapped_modification_js_kss)
 bootstrapped_replacement_js_kss = numpy.array(bootstrapped_replacement_js_kss)

@@ -25,7 +25,7 @@ mpl.rcParams['legend.fontsize']	 = 'small'
 
 output_file = open("figures/figure_1_output.txt","w")
 
-table_file = open("supplemental_data/TableS3.txt","w")
+table_file = open("figures/TableS1.txt","w")
 # Write header
 table_file.write(", ".join(["Regression","Sample size","Num positive", "beta_phylum", "pvalue","beta_initial_diversity","pvalue"]))
 table_file.write("\n")
@@ -532,6 +532,8 @@ for phylum_idxs,Q,color,label,firmicutes_indicator in zip([bacteroidetes_idxs,fi
 	numerators = ((alpha0s[:,None]>=quantiles[None,0:-1]) * (alpha0s[:,None]<=quantiles[None,1:])*phylum_idxs[:,None]*modification_idxs[:,None]).sum(axis=0)
 	
 	denominators = ((alpha0s[:,None]>=quantiles[None,0:-1]) * (alpha0s[:,None]<=quantiles[None,1:])*phylum_idxs[:,None]).sum(axis=0)
+	
+	print(label, denominators, denominators.sum(), denominators.sum()/Q)
 	
 	rates = numerators*1.0/denominators
 	sigmas = numpy.sqrt(rates*(1-rates)/denominators)
